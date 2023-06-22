@@ -1,11 +1,17 @@
 require('dotenv').config();
-const User = require('../models/user');
+const User = require('../models/userModel');
 
 
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-console.log(accountSid)
-const twilio = require('twilio')(accountSid, authToken);
+// const accountSid = process.env.TWILIO_ACCOUNT_SID;
+// const authToken = process.env.TWILIO_AUTH_TOKEN;
+// const client = require('twilio')(accountSid, authToken);
+// client.messages
+//   .create({
+//      body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+//      from: '+15017122661',
+//      to: '+15558675310'
+//    })
+//   .then(message => console.log(message.sid));
 
 // Generate and send OTP
 const sendOTP = async (req, res) => {
@@ -23,11 +29,11 @@ const sendOTP = async (req, res) => {
     );
 
     // Send SMS with the OTP code
-    twilio.messages.create({
-      body: `Your OTP code is ${otpCode}`,
-      from: 9712108463,
-      to: mobileNumber
-    });
+    // client.messages.create({
+    //   body: `Your OTP code is ${otpCode}`,
+    //   from: 9712108463,
+    //   to: mobileNumber
+    // });
 
     res.status(200).json({ message: 'OTP sent successfully' });
   } catch (error) {

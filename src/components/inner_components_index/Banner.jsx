@@ -46,7 +46,7 @@ function Banner() {
     return () => {
       clearInterval(timer);
     };
-  }, []);
+  }, [images.length]);
 
   return (
     <section className="banner">

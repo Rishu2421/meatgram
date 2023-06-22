@@ -20,9 +20,9 @@ function Navigation(){
         <div class="cart">
          <a href="/cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Cart</a>
         </div>
-        <div class="cart">
+        {/* <div class="cart">
          <a href="/cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Cart</a>
-        </div>
+        </div> */}
         
     </div>
     
