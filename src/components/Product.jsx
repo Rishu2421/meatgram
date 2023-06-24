@@ -10,7 +10,7 @@ function Product(){
 
     return (
         <div>
-        <Banner />
+        {/* <Banner /> */}
         <RedBackgroundWrap />
         <ProductWrap />
         <MinibitsWrap />

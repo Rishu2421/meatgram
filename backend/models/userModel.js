@@ -13,9 +13,8 @@ const userSchema = new Schema({
     required : true,
     unique: true,
   },
-  email: {
+  emailId: {
     type: String,
-    default: null,
   },
 },{timestamps: true});
 

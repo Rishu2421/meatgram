@@ -1,15 +1,16 @@
 import React, { useState,useEffect } from "react";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Body from "./Body";
 import Category from "./Category";
 import SearchBar from "./SearchBar";
 import Cart from "./Cart";
 import Product from "./Product";
 import Navigation from "./Navigation";
-import SignUp from "./SignUp";
-import LogIn from "./LogIn";
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
+import AdminApp from "./admin/AdminApp/AdminApp";
+// const jwt= require('jsonwebtoken')f
+// require('dotenv').config();
 
 function NavBar() {
   const [isAuthenticated, setIsAuthenticated] = useState(false); // Initially set as false
@@ -39,15 +40,12 @@ function NavBar() {
   };
 
   const handleSendOtp = () => {
-    console.log("mei yha aaya");
+
     const data = {
       mobileNumber: mobileNumber,
     };
     axios.post("/api/user/signup", data).then((response) => {
-        
-        console.log("hello i")
-        console.log(response);
-        console.log("hello i am here")
+
         setOtpSent(true);
       })
       .catch((error) => {
@@ -58,7 +56,7 @@ function NavBar() {
   const handleVerifyOtp = () => {
     // Perform OTP verification logic here
     const givenOtp = enteredOtp; // Get the entered OTP from the input field
-   console.log("adsdsa");
+ 
     const data = {
       mobileNumber: mobileNumber,
       otp: givenOtp,
@@ -68,10 +66,11 @@ function NavBar() {
       .post("/api/user/signup/verify", data)
       .then((response) => {
         console.log(response.status);
-        if(response.status === 200) {
-          setIsAuthenticated(true)
-          handleLoginModalClose()
-
+        if (response.status === 200) {
+          const token = response.data.token; // Extract the JWT token from the response
+          setIsAuthenticated(true);
+          localStorage.setItem("token", token); // Store the token in localStorage
+          handleLoginModalClose();
         }
         // Perform necessary actions based on the verification result
         // For example, redirect to a logged-in page or show an error message
@@ -177,8 +176,9 @@ function NavBar() {
           <Route path="/category" element={<Category />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/product" element={<Product />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<LogIn />} />
+          <Route path="/admin/*" element={<AdminApp />} />
+          {/* <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<LogIn />} /> */}
 
           {/* Add your other routes here */}
         </Routes>

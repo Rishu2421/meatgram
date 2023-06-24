@@ -1,0 +1,17 @@
+.card-wrapper {
+    height: 100%;
+  }
+  
+  .card-image-container {
+    height: 200px; /* Set a fixed height for the image container */
+  }
+  
+  .card-image {
+    height: 100%; /* Make the image fill the container */
+    object-fit: cover; /* Adjust how the image is displayed */
+  }
+  
+  .additional-info {
+    margin-top: 10px;
+  }
+  

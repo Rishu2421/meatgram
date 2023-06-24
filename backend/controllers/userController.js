@@ -79,12 +79,7 @@ module.exports.verifyOtp = async(req,res)=>{
     const validUser = await bcrypt.compare(req.body.otp, rightOtpFind.otp);
     if(rightOtpFind.number === req.body.mobileNumber && validUser){
         const user = new User(_.pick(req.body,["mobileNumber"]))
-        if (user.email === null) {
-            // Handle null email value (assign a default value or skip saving the user document)
-            // For example:
-            user.email = "default@gmail.com";
-            
-          }
+        
         const token = user.generateJWT();
         const result = await user.save();
 
