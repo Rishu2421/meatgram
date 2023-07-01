@@ -8,7 +8,7 @@ const CategoryInfoTextComponent = () => {
           <div className="box">
             <div className="image-text">
               <div className="image">
-                <img src="images/Rectangle 78 (1).png" alt="Chicken Drumstick - Pack Of 6" />
+                <img src="/images/Rectangle 78 (1).png" alt="Chicken Drumstick - Pack Of 6" />
               </div>
               <div className="text">
                 <h5>Chicken Drumstick - Pack Of 6</h5>
@@ -23,14 +23,11 @@ const CategoryInfoTextComponent = () => {
                   </div>
                 </div>
                 <div className="dilivary-text">
-                  <a href="#"><img src="images/express_delivery 2.png" alt="Express Delivery" />Tomorrow 6 AM - 8 AM</a>
+                  <a href="#"><img src="/images/express_delivery 2.png" alt="Express Delivery" />Tomorrow 6 AM - 8 AM</a>
                 </div>
               </div>
             </div>
-          </div>
-          
-
-          
+          </div>    
           {/* Add more box components here */}
         </div>
       </div>

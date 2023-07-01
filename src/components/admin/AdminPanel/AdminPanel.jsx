@@ -5,6 +5,7 @@ import ViewProducts from '../AdminControl/ViewProducts';
 import AddProduct from '../AdminControl/AddProduct';
 import RemoveProduct from '../AdminControl/RemoveItem';
 import AddCategory from '../AdminControl/AddCategory';
+import CategoryView from '../AdminControl/CategoryView';
 import './AdminPanel.css';
 
 const AdminPanel = ({ onLogout }) => {
@@ -38,6 +39,11 @@ const AdminPanel = ({ onLogout }) => {
                 Add Category
               </Link>
             </div>
+              <div className="admin-button">
+              <Link to="/admin/view-category" className="nav-link">
+                View Category
+              </Link>
+            </div>
             <div className="admin-button">
               <button onClick={onLogout} className="nav-link">
                 Logout
@@ -52,6 +58,7 @@ const AdminPanel = ({ onLogout }) => {
               <Route path="/view-products" element={<ViewProducts />} />
               <Route path="/add-product" element={<AddProduct />} />
               <Route path="/add-category" element={<AddCategory />} />
+              <Route path="/view-category" element={<CategoryView />} />
             </Routes>
           </div>
         </div>

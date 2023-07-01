@@ -18,11 +18,11 @@ function Navigation() {
       </div>
       <div className="category">
         <a href="/category">
-          <img src="images/immediate.png" alt="immediate" />Category
+          <img src="/images/immediate.png" alt="immediate" />Category
         </a>
       </div>
       <div className="product">
-        <a href="/product">
+        <a href="/product/allproducts">
           <i className="fa fa-product-hunt" aria-hidden="true"></i>Product
         </a>
       </div>

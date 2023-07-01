@@ -54,10 +54,10 @@ module.exports.signUp = async (req,res)=>{
         const otp = new Otp({number:number,otp:OTP});
         const salt = await bcrypt.genSalt(10);
         otp.otp = await bcrypt.hash(otp.otp,salt);
-        const fromPhoneNumber = '+15878045352';
+        // const fromPhoneNumber = '+15878045352';
         const result = await otp.save();
 
-        // to activate otp sent on device 
+        // to activate otp sent on device woj otp ccontroller file ka khuch nhi hai 
         // client.messages
         // .create({
         //    body: `Your otp to login meatgram is ${OTP}`,
@@ -78,7 +78,13 @@ module.exports.verifyOtp = async(req,res)=>{
     const rightOtpFind = otpHolder[otpHolder.length-1];
     const validUser = await bcrypt.compare(req.body.otp, rightOtpFind.otp);
     if(rightOtpFind.number === req.body.mobileNumber && validUser){
-        const user = new User(_.pick(req.body,["mobileNumber"]))
+
+        let user = await User.findOne({ mobileNumber: req.body.mobileNumber });
+        if (!user) {
+            // User does not exist, create a new user
+            user = new User(_.pick(req.body,["mobileNumber"]));
+          }
+        // const user = new User(_.pick(req.body,["mobileNumber"]))
         
         const token = user.generateJWT();
         const result = await user.save();
@@ -89,7 +95,8 @@ module.exports.verifyOtp = async(req,res)=>{
         return res.status(200).send({
             message:"User registration successfull",
             token : token,
-            data:result
+            data:result,
+            userId: result._id,
         });
     } else {
         return res.status(400).send("Your otp is wrong")

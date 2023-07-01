@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-function Category() {
+function CategoryWrap({onCategoryChoice}) {
   const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
+  useEffect((onCategoryChoice) => {
     // Fetch categories from backend API
     // Replace 'your-backend-api-endpoint' with your actual backend API endpoint
     fetch('/api/categories')
@@ -12,7 +13,12 @@ function Category() {
       .catch(error => console.error('Error fetching categories:', error));
   }, []);
 
-  console.log(categories);
+  const navigate = useNavigate();
+  const handleCategoryClick = (categoryName) => {
+      onCategoryChoice(categoryName);
+      navigate(`/category/${categoryName}`);
+  
+    };
   return (
     <section className="category-wrap">
       <div className="container">
@@ -23,14 +29,14 @@ function Category() {
           {categories.map(category => (
             <div className="category" key={category._id}>
               <div className="image">
-                <img src={category.imageUrl} alt={category.name} />
+              {/* remeber to look when deployed */}
+                <img src={`http://localhost:3000/${category.imageUrl}#`} alt={category.name} />
               </div>
               <div className="text">
-                <h3>{category.name}</h3>
+              <a href="#" onClick={() => handleCategoryClick(category.name)} ><h3>{category.name}</h3></a>
                 <h5>
                 </h5>
-                <a href={`/category/${category._id}`}>View Products</a>
-              </div>
+            </div>
             </div>
           ))}
         </div>
@@ -39,7 +45,7 @@ function Category() {
   );
 }
 
-export default Category;
+export default CategoryWrap;
 
 
 

@@ -8,7 +8,7 @@ const ViewProducts = () => {
   useEffect(() => {
     // Fetch products from backend API
     // Replace 'your-backend-api-endpoint' with your actual backend API endpoint
-    fetch('/api/products')
+    fetch('/api/products/allproducts')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
@@ -34,9 +34,11 @@ const ViewProducts = () => {
             <div className="h-100">
               <Card className="mb-4 h-100">
                 <div className="card-image-container">
+
+                {/* correct when deploying */}
                   <Card.Img
                     variant="top"
-                    src={appendTimestamp(product.image)}
+                    src={`http://localhost:3000/${appendTimestamp(product.image)}`}
                     alt={product.name}
                     className="img-fluid h-100"
                   />

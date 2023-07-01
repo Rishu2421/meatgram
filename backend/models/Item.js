@@ -13,6 +13,8 @@ const itemSchema = new mongoose.Schema({
   category: { type: String, required: true },
   isTopSelling: { type: Boolean, required: true },
   isBoneless: { type: Boolean, default: false },
+}, {
+  strictPopulate: false // Set strictPopulate to false
 });
 
 // Create the Item model

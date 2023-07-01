@@ -1,4 +1,5 @@
 import React from 'react';
+import './TheWay.css';
 
 function TheWay() {
   return (
@@ -10,7 +11,7 @@ function TheWay() {
         <div className="row">
           <div className="col-md-4">
             <div className="image">
-              <img src="images/Rectangle 99.png" alt="1" />
+              <img src="/images/Rectangle 99.png" alt="1" />
             </div>
             <div className="text">
               <p>Premium produce, sourced directly from the origin</p>
@@ -18,7 +19,7 @@ function TheWay() {
           </div>
           <div className="col-md-4">
             <div className="image">
-              <img src="images/Rectangle 99.png" alt="2" />
+              <img src="/images/Rectangle 99.png" alt="2" />
             </div>
             <div className="text">
               <p>Scientifically designed central production Unit</p>
@@ -26,7 +27,7 @@ function TheWay() {
           </div>
           <div className="col-md-4">
             <div className="image">
-              <img src="images/Rectangle 99.png" alt="3" />
+              <img src="/images/Rectangle 99.png" alt="3" />
             </div>
             <div className="text">
               <p>Compliance to stringent quality checks</p>

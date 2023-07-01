@@ -29,11 +29,11 @@ const sendOTP = async (req, res) => {
     );
 
     // Send SMS with the OTP code
-    // client.messages.create({
-    //   body: `Your OTP code is ${otpCode}`,
-    //   from: 9712108463,
-    //   to: mobileNumber
-    // });
+    client.messages.create({
+      body: `Your OTP code is ${otpCode}`,
+      from: 9712108463,
+      to: mobileNumber
+    });
 
     res.status(200).json({ message: 'OTP sent successfully' });
   } catch (error) {

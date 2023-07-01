@@ -1,0 +1,28 @@
+
+.minibits-wrap .title h3 {
+    color: #000;
+    font-size: 24px;
+    font-weight: 700;
+}
+.minibits-wrap .image-text-box {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.minibits-wrap .image-text-box .image img {
+    max-width: 100%;
+}
+.minibits-wrap .image-text-box .text {
+    margin-left: 30px;
+}
+.minibits-wrap .image-text-box .text h5 {
+   font-size: 18px;
+   font-weight: 700;
+   color: #000;
+}
+.minibits-wrap .image-text-box .text p {
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+ }

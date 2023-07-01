@@ -16,6 +16,18 @@ const userSchema = new Schema({
   emailId: {
     type: String,
   },
+  cartItems: [
+    {
+      item: {
+        type: Schema.Types.ObjectId,
+        ref: 'Item',
+      },
+      quantity: {
+        type: Number,
+        default: 1,
+      },
+    },
+  ],
 },{timestamps: true});
 
 userSchema.methods.generateJWT  = function(){

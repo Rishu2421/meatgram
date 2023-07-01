@@ -7,7 +7,7 @@ function Footer() {
         <div className="row footbottom">
           <div className="col-md-4">
             <div className="first">
-              <img src="images/logo.png" alt="Logo" />
+              <img src="/images/logo.png" alt="Logo" />
               <p>
                 Pamper Your Taste Buds With This Rich And Flavourful Chicken
                 Curry Recipe!

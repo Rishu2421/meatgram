@@ -1,0 +1,30 @@
+
+.Sourcing {
+    padding: 50px 0px;
+    background-image: url('images/Rectangle 96.png');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    margin-top: 50px;
+ }
+ .Sourcing .sourcing-wrap .text {
+    background-color: #f1f1f1;
+    padding: 30px;
+    max-width: 600px;
+}
+.Sourcing .sourcing-wrap {
+    display: flex;
+    justify-content: end;
+}
+ .Sourcing .sourcing-wrap .text .item ul .active a {
+    color: #E90C0C;
+ }
+ .Sourcing .sourcing-wrap .text .item {
+    border-bottom: 1px solid #000;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}

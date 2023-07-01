@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes,useNavigate } from "react-router-dom";
 import Body from "./Body";
 import Category from "./Category";
 import SearchBar from "./SearchBar";
@@ -9,6 +9,7 @@ import Navigation from "./Navigation";
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 import AdminApp from "./admin/AdminApp/AdminApp";
+import Items from './product/Items'
 // const jwt= require('jsonwebtoken')f
 // require('dotenv').config();
 
@@ -19,6 +20,16 @@ function NavBar() {
   const [verifyOtp, setVerifyOtp] = useState(false);
   const [enteredOtp, setEnteredOtp] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
+  const [categoryName, setCategoryName] = useState("");
+  const navigate = useNavigate();
+  
+
+  const handleCategoryChoice = (category) => {
+    setCategoryName(category);
+    console.log("I am here in navbar.jsx")
+    navigate(`/category/${categoryName}`);
+  };
+
 
   useEffect(() => {
     // Check for authentication token on component mount
@@ -66,10 +77,15 @@ function NavBar() {
       .post("/api/user/signup/verify", data)
       .then((response) => {
         console.log(response.status);
+        console.log(response)
         if (response.status === 200) {
           const token = response.data.token; // Extract the JWT token from the response
+          const userId = response.data.userId; 
+          console.log(userId)
           setIsAuthenticated(true);
           localStorage.setItem("token", token); // Store the token in localStorage
+          localStorage.setItem("userId", userId);
+         
           handleLoginModalClose();
         }
         // Perform necessary actions based on the verification result
@@ -82,7 +98,7 @@ function NavBar() {
   };
 
   return (
-    <BrowserRouter>
+  
       <div>
         <section className="header">
           <div className="container">
@@ -90,7 +106,7 @@ function NavBar() {
               <div className="left">
                 <div className="logo">
                   <a href="/">
-                    <img src="images/logo.png" alt="logo" />
+                    <img src="/images/logo.png" alt="logo" />
                   </a>
                 </div>
               </div>
@@ -172,10 +188,13 @@ function NavBar() {
         </Modal>
 
         <Routes>
-          <Route exact path="/" element={<Body />} />
-          <Route path="/category" element={<Category />} />
+          <Route exact path="/" element={<Body categoryChoice={handleCategoryChoice} />} />
+          <Route path="/category" element={<Category categoryChoice={handleCategoryChoice} />} />
+            <Route path="/category/:categoryName" element={<Items category={categoryName} showAll={true} />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/product" element={<Product />} />
+          <Route path="/products" element={<Product />} />
+          <Route path="/product/:productType" element={<Items showAll={true} />} />
+        
           <Route path="/admin/*" element={<AdminApp />} />
           {/* <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<LogIn />} /> */}
@@ -183,7 +202,6 @@ function NavBar() {
           {/* Add your other routes here */}
         </Routes>
       </div>
-    </BrowserRouter>
   );
 }
 

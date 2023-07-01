@@ -6,7 +6,7 @@ function RedBackgroundWrap() {
 
   // Split the URL path into separate segments
   const pathSegments = location.pathname.split('/').filter(segment => segment !== '');
-
+  
   return (
     <section className="red-bg-wrap">
       <div className="container">

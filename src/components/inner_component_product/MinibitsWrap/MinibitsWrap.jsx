@@ -1,4 +1,5 @@
 import React from 'react';
+import './MinibitsWrap.css';
 
 function MinibitsWrap() {
   return (
@@ -11,7 +12,7 @@ function MinibitsWrap() {
           <div className="col-md-6">
             <div className="image-text-box">
               <div className="image">
-                <img src="images/Rectangle 93.png" alt="Product Image" />
+                <img src="/images/Rectangle 93.png" alt="Product" />
               </div>
               <div className="text">
                 <h5>Fish Tikka (Mini) | Ready to Cook</h5>
@@ -22,7 +23,7 @@ function MinibitsWrap() {
           <div className="col-md-6">
             <div className="image-text-box">
               <div className="image">
-                <img src="images/Rectangle 93.png" alt="Product Image" />
+                <img src="/images/Rectangle 93.png" alt="Product" />
               </div>
               <div className="text">
                 <h5>Egg | Ready to cook</h5>

@@ -649,6 +649,7 @@ ul li a {
 }
 
 .product-wrap {
+    background-color: green;
     padding: 50px 0px;
 }
 .product-wrap .box-wrap {

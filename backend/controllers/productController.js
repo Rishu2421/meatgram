@@ -3,7 +3,6 @@ const Item = require('../models/Item');
 exports.getProducts = async (req, res) => {
   try {
     const products = await Item.find();
-    console.log(products);
     return res.json(products);
   } catch (error) {
     console.error('Error fetching products:', error);
@@ -11,6 +10,49 @@ exports.getProducts = async (req, res) => {
   }
 };
 
+exports.getTopSellingProducts = (req, res) => {
+    // Query the database for top-selling products
+    Item.find({ isTopSelling: true })
+      .then((products) => {
+        res.json(products);
+      })
+      .catch((error) => {
+        console.error('Error fetching top-selling products:', error);
+        res.status(500).json({ error: 'An error occurred while fetching top-selling products.' });
+      });
+  };
+
+  exports.getBonelessItems = async (req, res) => {
+    Item.find({ isBoneless: true })
+    .then((products) => {
+      res.json(products);
+    })
+    .catch((error) => {
+      console.error('Error fetching Boneless products:', error);
+      res.status(500).json({ error: 'An error occurred while fetching Boneless products.' });
+    });
+  };
+
+  exports.getProductsByIds = async (req, res) => {
+    try {
+      const itemIds = req.query.ids.split(',');
+    
+  
+      // Fetch the products from the database using the item IDs
+      const products = await Item.find({ _id: { $in: itemIds } });
+  
+      if (products.length !== itemIds.length) {
+        return res.status(404).json({ message: 'One or more products not found' });
+      }
+  
+      // Return the products as a JSON response
+      res.json(products);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  };
+  
 exports.getProductsByCategory = async (req, res) => {
   const { category } = req.params;
 

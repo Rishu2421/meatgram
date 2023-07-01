@@ -7,7 +7,7 @@ function MeatgramInfo() {
         <div className="row">
           <div className="col-sm-3">
             <div className="image">
-              <img src="images/Clip path group.png" alt="1" />
+              <img src="/images/Clip path group.png" alt="1" />
             </div>
             <div className="text">
               <h3>100% Natural</h3>
@@ -18,7 +18,7 @@ function MeatgramInfo() {
           </div>
           <div className="col-sm-3">
             <div className="image">
-              <img src="images/Clip path group.png" alt="2" />
+              <img src="/images/Clip path group.png" alt="2" />
             </div>
             <div className="text">
               <h3>Premium Quality Meat</h3>
@@ -29,7 +29,7 @@ function MeatgramInfo() {
           </div>
           <div className="col-sm-3">
             <div className="image">
-              <img src="images/Clip path group.png" alt="3" />
+              <img src="/images/Clip path group.png" alt="3" />
             </div>
             <div className="text">
               <h3>Packed with Care</h3>
@@ -40,7 +40,7 @@ function MeatgramInfo() {
           </div>
           <div className="col-sm-3">
             <div className="image">
-              <img src="images/Clip path group.png" alt="4" />
+              <img src="/images/Clip path group.png" alt="4" />
             </div>
             <div className="text">
               <h3>Delivered Fresh</h3>

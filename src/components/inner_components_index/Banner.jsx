@@ -5,8 +5,8 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 function Banner() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = [
-    'images/BANNER IMAGE.png',
-    'images/crispy-kentucky-fried-chicken-black-slate-background_123827-22525 (1) 1.png',
+    '/images/BANNER IMAGE.png',
+    '/images/crispy-kentucky-fried-chicken-black-slate-background_123827-22525 (1) 1.png',
     // Add more image URLs as needed
   ];
 
