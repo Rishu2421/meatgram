@@ -13,6 +13,7 @@
     "http-proxy-middleware": "^2.0.6",
     "jquery": "^3.7.0",
     "jsonwebtoken": "^9.0.0",
+    "razorpay": "^2.9.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",

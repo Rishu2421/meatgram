@@ -4,10 +4,13 @@ const path = require('path');
 // Create an instance of Express.js
 const app = require('./app');
 const session = require('express-session');
-const passport = require('passport');
-const authRoutes = require('./routes/auth');
-const otpRoutes = require('./routes/otpRoutes');
+// const passport = require('passport');
+// const authRoutes = require('./routes/auth');
+// const otpRoutes = require('./routes/otpRoutes');
 const cors = require('cors');
+
+
+
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/metagram', {
   useNewUrlParser: true,
@@ -97,17 +100,19 @@ app.use(express.urlencoded({ extended: true }));
   });
   
   // Passport middleware
-  app.use(passport.initialize());
-  app.use(passport.session());
+  // app.use(passport.initialize());/
+  // app.use(passport.session());
   
   // Routes
-  app.use('/auth', authRoutes);
-  app.use('/api/otp', otpRoutes);
+  // app.use('/auth', authRoutes);
+  // app.use('/api/otp', otpRoutes);
+
+
 
 // Serve the static files from the React app
 
 
 // Start the server
-app.listen(3000, () => {
-  console.log('Server started on port 3000');
+app.listen(process.env.PORT, () => {
+  console.log(`Server started on port ${process.env.port}`);
 });

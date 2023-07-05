@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-
+import CheckoutPage from "./orders/CheckoutPage";
 function Cart() {
+  const [showCheckout, setShowCheckout] = useState(false);
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
@@ -72,6 +73,10 @@ function Cart() {
 
   return (
     <div>
+    {showCheckout ? (
+      <CheckoutPage amount={calculateTotalValue()} products={cartItems}/>
+    ) : (
+    <div>
       <h1>Cart</h1>
       {cartItems.length === 0 ? (
         <p>Your cart is empty.</p>
@@ -102,10 +107,14 @@ function Cart() {
             </tbody>
           </table>
           <p>Total: {calculateTotalValue()}</p>
-          <button className="btn btn-primary">Buy Now</button>
+          <button className="btn btn-primary" onClick={() => setShowCheckout(true)}>
+          Buy Now
+        </button>
+          {/* <button className="btn btn-primary">Buy Now</button> */}
         </div>
       )}
-    </div>
+    </div> )}
+  </div>
   );
 }
 

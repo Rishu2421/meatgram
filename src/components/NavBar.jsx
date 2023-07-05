@@ -10,6 +10,9 @@ import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 import AdminApp from "./admin/AdminApp/AdminApp";
 import Items from './product/Items'
+import PaymentSuccess from './orders/PaymentSuccess'
+import MyOrderPage from "./orders/MyOrderPage";
+import OrderStatusUpdate from "./orders/OrderStatusUpdate";
 // const jwt= require('jsonwebtoken')f
 // require('dotenv').config();
 
@@ -23,7 +26,7 @@ function NavBar() {
   const [categoryName, setCategoryName] = useState("");
   const navigate = useNavigate();
   
-
+  const userId = localStorage.getItem('userId');
   const handleCategoryChoice = (category) => {
     setCategoryName(category);
     console.log("I am here in navbar.jsx")
@@ -194,8 +197,11 @@ function NavBar() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/products" element={<Product />} />
           <Route path="/product/:productType" element={<Items showAll={true} />} />
-        
+          <Route path="/paymentsuccess" element={<PaymentSuccess />} />
           <Route path="/admin/*" element={<AdminApp />} />
+          <Route path="/user/myorder" element={<MyOrderPage isAdmin={false} userId={userId} />} />
+
+          <Route path="/order/:orderId" element={<OrderStatusUpdate />}/>
           {/* <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<LogIn />} /> */}
 

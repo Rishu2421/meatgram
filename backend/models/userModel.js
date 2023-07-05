@@ -28,6 +28,12 @@ const userSchema = new Schema({
       },
     },
   ],
+  orders: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Order',
+    },
+  ],
 },{timestamps: true});
 
 userSchema.methods.generateJWT  = function(){
@@ -36,7 +42,7 @@ userSchema.methods.generateJWT  = function(){
             mobileNumber:this.mobileNumber
           },process.env.JWT_SECRET_KEY,{ expiresIn : "7d" }); 
           return token;
-}
+};
 
 
 module.exports.User = model('User', userSchema);
