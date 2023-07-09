@@ -21,6 +21,7 @@ const orderSchema = new Schema(
         item: {
           type: Schema.Types.ObjectId,
           ref: 'Item',
+          autopopulate: true, 
         },
         quantity: {
           type: Number,

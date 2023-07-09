@@ -25,9 +25,7 @@ const AddCategory = () => {
       const requestOptions = {
         method: 'POST',
         body: formData,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+      
       };
       const response = await fetch('/api/admin/add-category', requestOptions);
 

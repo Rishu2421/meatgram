@@ -11,7 +11,6 @@ const MyOrderPage = ({ isAdmin, userId }) => {
       try {
         const response = await axios.get(`/api/orders/${isAdmin ? 'admin' : `user/${userId}`}`);
         setOrders(response.data);
-        console.log(response.data)
       } catch (error) {
         console.error('Error fetching orders:', error);
       }
@@ -19,47 +18,15 @@ const MyOrderPage = ({ isAdmin, userId }) => {
     fetchOrders();
   }, [isAdmin, userId]);
 
-  const updateOrderStatus = async (orderId) => {
-    try {
-      // Implement your logic to update the order status
-      console.log(`Updating order status for order ID: ${orderId}`);
-    } catch (error) {
-      console.error('Error updating order status:', error);
-    }
-  };
-
   return (
     <div>
-     
+       <h1 className="mt-4">Order History</h1>
+     <p className="text-muted">Check the status of recent orders, manage returns, and download invoices.</p>
+    
       {orders.length === 0 ? (
         <p>No orders found.</p>
       ) : (
-        <ul>
-          {/* {orders.map((order) => (
-            <li key={order._id}>
-              <p>Order ID: {order._id}</p>
-              <p>Amount: {order.amount}</p>
-              {isAdmin && (
-                <div>
-                  <p>Status: {order.status}</p>
-                  <button onClick={() => updateOrderStatus(order._id)}>Update Status</button>
-                </div>
-              )}
-            </li>
-          ))} */}
-          {orders.map((order) => (
-            <li key={order._id}>
-            <OrderContainer orders={orders} />
-              {isAdmin && (
-                <div>
-                  <p>Status: {order.status}</p>
-                  <button onClick={() => updateOrderStatus(order._id)}>Update Status</button>
-                </div>
-              )}
-            </li>
-          ))}
-
-        </ul>
+         <OrderContainer isAdmin={isAdmin} key={orders._id} orders={orders} />   
       )}
     </div>
   );

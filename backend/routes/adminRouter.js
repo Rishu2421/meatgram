@@ -9,4 +9,5 @@ router.route('/addproduct').post(adminAuthMiddleware, addProducts);
 router.route('/add-category').post(adminAuthMiddleware, addCategory);
 
 router.delete('/items/:id', deleteItem);
+
 module.exports = router;

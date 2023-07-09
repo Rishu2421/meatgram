@@ -2,9 +2,11 @@ const dotenv = require('dotenv');
 const Razorpay = require('razorpay');
 const path = require('path');
 const crypto = require('crypto');
-const orderModel = require('../models/orders');
+const Order = require('../models/orders');
 dotenv.config({ path: path.join(__dirname, '..', 'config', 'config.env') });
 const { User } = require('../models/userModel');
+const Item = require('../models/Item');
+
 const instance = new Razorpay({
     key_id: process.env.RAZORPAY_API_KEY,
     key_secret: process.env.RAZORPAY_API_SECRET,
@@ -42,6 +44,7 @@ module.exports.paymentVerification = async (req, res) => {
     console.log("I am here at payment verifiation 41")
     console.log(req.body);
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
+    // eslint-disable-next-line no-unused-vars
     const instance = new Razorpay({
       key_id: process.env.RAZORPAY_API_KEY,
       key_secret: process.env.RAZORPAY_API_SECRET,
@@ -93,14 +96,28 @@ module.exports.savePaymentDetails=async (req,res)=> {
       razorpay_signature, 
     } = req.body;
     const user = await User.findById(userId).populate('cartItems.item');
-    const cartItems= user.cartItems
+    const cartItems= user.cartItems;
+    console.log(cartItems)
 
-    const items = cartItems.map((item) => ({
-      item: item.item._id,
-      quantity: item.quantity,
-    }));
+    
+    const items = await Promise.all(
+      cartItems.map(async (cartItem) => {
+        const item = await Item.findById(cartItem.item);
+        return {
+          item,
+          quantity: cartItem.quantity,
+        };
+      })
+    );
 
-    const order = await orderModel.create({
+    console.log(items);
+    // const items = cartItems.map((item) => ({
+    //   item: item.item, // Use the item.item directly
+    //   quantity: item.quantity,
+    // }));
+    
+  
+    const order = await Order.create({
       name,
       email,
       address,

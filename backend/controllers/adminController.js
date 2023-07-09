@@ -4,6 +4,7 @@ const Item = require('../models/Item');
 // const categoryController = require('../controllers/categoryController');
 const Category = require('../models/category');
 
+
 module.exports.authenticate = async (req, res) => {
     const { username, password } = req.body;
 
@@ -144,6 +145,9 @@ module.exports.deleteItem = async (req, res) => {
       return res.status(500).json({ error: 'Failed to delete item' });
     }
   };
+
+
+  
   
 // module.exports.addProducts = async (req, res) => {
 //     upload.single('image')(req, res, function (err) {

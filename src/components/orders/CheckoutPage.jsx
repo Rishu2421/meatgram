@@ -99,7 +99,6 @@ const CheckoutPage = ({ amount,products }) => {
       const data = {
         name,
         email,
-        dob,
         address,
         userId,
         amount,
@@ -108,10 +107,10 @@ const CheckoutPage = ({ amount,products }) => {
         razorpay_signature,
       }
       await axios.post('/api/payment/savepayment', data);
-      window.location.href = `http://localhost:3001/paymentsuccess?reference=${razorpay_payment_id}`;
+      window.location.href = `/paymentsuccess?reference=${razorpay_payment_id}`;
       console.log("Payment details sent to the backend");
     } catch (error) {
-      window.location.href = 'http://localhost:3001/paymenterror';
+      window.location.href = '/paymenterror';
       console.error("An error occurred while sending payment details:", error);
      
 
@@ -145,7 +144,7 @@ const CheckoutPage = ({ amount,products }) => {
               />
             </Form.Group>
 
-            <Form.Group controlId="formDob">
+            {/* <Form.Group controlId="formDob">
               <Form.Label>Date of Birth</Form.Label>
               <Form.Control
                 type="date"
@@ -154,7 +153,7 @@ const CheckoutPage = ({ amount,products }) => {
                 onChange={(e) => setDob(e.target.value)}
                 required
               />
-            </Form.Group>
+            </Form.Group> */}
 
             <Form.Group controlId="formAddress">
               <Form.Label>Address</Form.Label>
