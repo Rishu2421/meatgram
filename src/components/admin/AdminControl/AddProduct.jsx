@@ -1,7 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import axios from 'axios';
 
 const AddProduct = () => {
+
+  const [category,setCategory]=useState([]);
+  
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await fetch('/api/categories');
+      const data = await response.json();
+                                                                       
+      setCategory(data);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  };
   const [product, setProduct] = useState({
     name: '',
     price: '',
@@ -222,20 +239,26 @@ const AddProduct = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="productCategory" className="form-label">
-            Category
-          </label>
-          <input
-            type="text"
-            name="category"
-            value={product.category}
-            onChange={handleInputChange}
-            className="form-control"
-            id="productCategory"
-            placeholder="Category"
-            required
-          />
-        </div>
+  <label htmlFor="productCategory" className="form-label">
+    Category
+  </label>
+  <select
+    name="category"
+    value={product.category}
+    onChange={handleInputChange}
+    className="form-control"
+    id="productCategory"
+    required
+  >
+    <option value="">Select a category</option>
+    {category.map((category, index) => (
+      <option key={index} value={category.name}>
+        {category.name}
+      </option>
+    ))}
+  </select>
+</div>
+
 
         <div className="mb-3 form-check">
           <input

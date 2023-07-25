@@ -3,7 +3,12 @@ const jwt = require('jsonwebtoken');
 const Item = require('../models/Item');
 // const categoryController = require('../controllers/categoryController');
 const Category = require('../models/category');
+const path = require('path');
+const fs = require('fs');
+const multer = require('multer');
+  
 
+const Banner = require('../models/banner');
 
 module.exports.authenticate = async (req, res) => {
     const { username, password } = req.body;
@@ -27,8 +32,7 @@ module.exports.authenticate = async (req, res) => {
     }
 
   };
-  const multer = require('multer');
-  const path = require('path');
+  
 
   const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -124,6 +128,8 @@ module.exports.addCategory = (req, res) => {
     });
   };
 
+
+
   
 module.exports.deleteItem = async (req, res) => {
     const itemId = req.params.id;
@@ -146,6 +152,78 @@ module.exports.deleteItem = async (req, res) => {
     }
   };
 
+
+  module.exports.getBanners = async (req, res) => {
+    try {
+      const banners = await Banner.find();
+      res.status(200).json(banners);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch banners.' });
+    }
+  };
+// Update the addBanner function
+module.exports.addBanner = async (req, res) => {
+  try {
+    upload.single('image')(req, res, function (err) {
+      if (err) {
+        console.error('Error uploading file:', err);
+        return res.status(500).json({ error: 'Failed to upload file' });
+      }
+
+      // File upload successful, continue with banner creation
+      const { altText } = req.body;
+      const image = req.file ? `/uploads/${req.file.filename}` : '';
+
+      const newBanner = new Banner({
+        image,
+        altText,
+      });
+
+      newBanner.save()
+  .then(createdBanner => {
+    res.status(200).json({ message: 'Banner added successfully.', banner: createdBanner });
+  })
+  .catch(error => {
+    console.error('Error creating banner:', error);
+    res.status(500).json({ error: 'Failed to create banner' });
+  });
+
+    });
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to add banner.' });
+  }
+};
+
+// Update the removeBanner function
+module.exports.removeBanner = async (req, res) => {
+  try {
+    const { bannerId } = req.params;
+      console.log("Executing in admincontroller remve banner")
+    const banner = await Banner.findById(bannerId);
+    console.log(banner)
+    if (!banner) {
+      return res.status(404).json({ message: 'Banner not found.' });
+    }
+
+    // Delete the image file from the server if it exists
+    if (banner.image) {
+      const imagePath = path.join(__dirname, '..', 'public', banner.image);
+      fs.unlink(imagePath, (error) => {
+        if (error) {
+          console.error('Error deleting image file:', error);
+        }
+      });
+    }
+
+    await banner.deleteOne();
+
+    res.status(200).json({ message: 'Banner removed successfully.' });
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: 'Failed to remove banner.', error: error.message });
+    
+  }
+};
 
   
   

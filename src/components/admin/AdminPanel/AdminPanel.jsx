@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link, Outlet, Route, Routes, useLocation } from 'react-router-dom';
+import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import AdminDashboard from '../AdminControl/AdminDashboard';
 import ViewProducts from '../AdminControl/ViewProducts';
 import AddProduct from '../AdminControl/AddProduct';
-import RemoveProduct from '../AdminControl/RemoveItem';
 import AddCategory from '../AdminControl/AddCategory';
 import CategoryView from '../AdminControl/CategoryView';
 import './AdminPanel.css';
 import MyOrderPage from '../../orders/MyOrderPage';
+import BannerComponent from '../AdminControl/Banner/BannerComponent';
 
 const AdminPanel = ({ onLogout }) => {
   const location = useLocation();
@@ -46,6 +46,17 @@ const AdminPanel = ({ onLogout }) => {
               </Link>
             </div>
             <div className="admin-button">
+              <Link to="/admin/banner" className="nav-link">
+                Banner
+              </Link>
+            </div>
+            {/* <div className="admin-button">
+              <Link to="/admin/removebanner" className="nav-link">
+                  Remove Banner
+              </Link>
+            </div> */}
+            
+            <div className="admin-button">
               <Link to="/admin/order" className="nav-link">
                 View Orders
               </Link>
@@ -65,6 +76,7 @@ const AdminPanel = ({ onLogout }) => {
               <Route path="/add-product" element={<AddProduct />} />
               <Route path="/add-category" element={<AddCategory />} />
               <Route path="/view-category" element={<CategoryView />} />
+              <Route path="/banner" element={<BannerComponent />} />
               <Route path="/order" element={<MyOrderPage isAdmin={true} />} />
             </Routes>
           </div>

@@ -5,7 +5,7 @@ import Card from './Card';
 function Items({ showAll, category,hideTitle }) {
   const [products, setProducts] = useState([]);
   const [categoryName,setCategoryName]=useState("");
-console.log(categoryName+"in items .jsx")
+
 
   useEffect(() => {
     fetchProducts();

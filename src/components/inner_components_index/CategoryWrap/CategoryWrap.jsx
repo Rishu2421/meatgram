@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import './CategoryWrap.css'
 function CategoryWrap({onCategoryChoice}) {
   const [categories, setCategories] = useState([]);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect((onCategoryChoice) => {
     // Fetch categories from backend API
@@ -26,19 +27,25 @@ function CategoryWrap({onCategoryChoice}) {
           <h2>Categories</h2>
         </div>
         <div className="category-info">
-          {categories.map(category => (
-            <div className="category" key={category._id}>
-              <div className="image">
-              {/* remeber to look when deployed */}
-                <img src={`http://localhost:3000/${category.imageUrl}#`} alt={category.name} />
-              </div>
-              <div className="text">
-              <a href="#" onClick={() => handleCategoryClick(category.name)} ><h3>{category.name}</h3></a>
-                <h5>
-                </h5>
-            </div>
-            </div>
-          ))}
+        {categories.map(category => (
+        <div className="category" key={category._id}>
+          <div className="image">
+            {/* Remember to look when deployed */}
+            <img
+              src={`http://localhost:3000/${category.imageUrl}#`}
+              style={{ width: "8rem", height: "8rem" }}
+              alt={category.name}
+            />
+          </div>
+          <div
+            className="index-category-text cursor-pointer"
+            onClick={() => handleCategoryClick(category.name)}
+          >
+            {category.name}
+          </div>
+        
+        </div>
+      ))}
         </div>
       </div>
     </section>

@@ -29,7 +29,7 @@ function TopSellingProducts() {
                 <img
                   src={`http://localhost:3000/${product.image}`}
                   alt={`Product ${index + 1}`}
-                  style={{ width: "12rem", borderRadius: "20px" }}
+                  style={{ width: "12rem", borderRadius: "20px" ,height:"12rem" }}
                 />
               </div>
               <div className="text">

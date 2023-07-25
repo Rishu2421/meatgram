@@ -9,7 +9,6 @@ function ProductWrap({ product,userId }) {
   const { name, image, quantity, numOfPieces, description, mrp,discount,isBoneless } = product;
   const discountedPrice = mrp - (mrp * (discount / 100));
 
-console.log("KLogging in product wrap.jsx"+product._id)
   const handleIncrement = () => {
     setCount(count + 1);
   };
@@ -53,7 +52,7 @@ console.log("KLogging in product wrap.jsx"+product._id)
 
   return (
     <section className="productWrap mt-40">
-      <div className="container" style={{"margin-top": "5rem"}}>
+      <div className="container" style={{"marginTop": "5rem"}}>
         <div className="row">
           <div className="col-md-6">
             <div className="images">

@@ -26,14 +26,8 @@ itemsConnection.on('error', (error) => {
   console.error('Error connecting to MongoDB Items database:', error);
 });
 
-const userConnection = mongoose.connection.useDb('metagramUser');
-userConnection.on('connected', () => {
-  console.log('Connected to MongoDB User database');
-});
 
-userConnection.on('error', (error) => {
-  console.error('Error connecting to MongoDB User database:', error);
-});
+
 // const itemsConnection = mongoose.connect('mongodb://localhost:27017', 'metagram', {
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,

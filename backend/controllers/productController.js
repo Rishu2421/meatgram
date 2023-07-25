@@ -11,16 +11,30 @@ exports.getProducts = async (req, res) => {
 };
 
 exports.getTopSellingProducts = (req, res) => {
-    // Query the database for top-selling products
-    Item.find({ isTopSelling: true })
-      .then((products) => {
-        res.json(products);
-      })
-      .catch((error) => {
-        console.error('Error fetching top-selling products:', error);
-        res.status(500).json({ error: 'An error occurred while fetching top-selling products.' });
-      });
-  };
+  // Query the database for top-selling products
+  Item.find({ isTopSelling: true })
+    .then((products) => {
+      res.json(products);
+    })
+    .catch((error) => {
+      console.error('Error fetching top-selling products:', error);
+      res.status(500).json({ error: 'An error occurred while fetching top-selling products.' });
+    });
+};
+exports.getItemsName = (req, res) => {
+  // Query the database for top-selling products and select only the 'name' field
+  Item.find({}, 'name')
+    .then((products) => {
+      console.log(products);
+      // Extract the names from the query result and create an array of names
+     
+      return res.json(products); // Send only the array of names in the response
+    })
+    .catch((error) => {
+      console.error('Error fetching top-selling products:', error);
+      return res.status(500).json({ error: 'An error occurred while fetching top-selling products.' });
+    });
+};
 
   exports.getBonelessItems = async (req, res) => {
     Item.find({ isBoneless: true })

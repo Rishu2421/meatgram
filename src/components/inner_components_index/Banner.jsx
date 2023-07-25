@@ -1,25 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import axios from 'axios';
 
 function Banner() {
+  const [images, setImages] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const images = [
-    '/images/BANNER IMAGE.png',
-    '/images/crispy-kentucky-fried-chicken-black-slate-background_123827-22525 (1) 1.png',
-    // Add more image URLs as needed
-  ];
+
+  useEffect(() => {
+    fetchImages();
+  }, []);
+
+  const fetchImages = async () => {
+    try {
+      const response = await axios.get('/api/admin/getbanner');
+      setImages(response.data);
+    } catch (error) {
+      console.log('Failed to fetch banner images:', error);
+      setImages([]);
+    }
+  };
 
   const carouselStyles = {
-    
     position: 'relative',
     maxHeight: '450px', // Adjust the height as needed
     objectFit: 'cover',
     objectPosition: 'center',
-    // margin: '0',s
     margin: '-9px auto',
-    
-    padding: '0'
+    padding: '0',
   };
 
   const indicatorStyles = {
@@ -51,7 +59,6 @@ function Banner() {
   return (
     <section className="banner">
       <div id="owl-carousel" className="slider">
-      {/* <div class="owl-carousel owl-theme">  */}
         <Carousel
           selectedItem={currentImageIndex}
           showStatus={false}
@@ -72,13 +79,12 @@ function Banner() {
             />
           )}
         >
-          {images.map((imageUrl, index) => (
+          {images.map((banner, index) => (
             <div key={index}>
-              <img src={imageUrl} className="item" alt={`Banner ${index + 1}`} style={carouselStyles} />
+              <img src={`http://localhost:3000/${banner.image}`} className="item" alt={`Banner ${index + 1}`} style={carouselStyles} />
             </div>
           ))}
         </Carousel>
-        {/* </div> */}
       </div>
     </section>
   );

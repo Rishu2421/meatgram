@@ -4,7 +4,7 @@ import { Form, Button } from 'react-bootstrap';
 const AddCategory = () => {
   const [name, setName] = useState('');
   const [image, setImage] = useState(null);
-  const token = localStorage.getItem('adminToken');
+
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
@@ -19,13 +19,17 @@ const AddCategory = () => {
     const formData = new FormData();
     formData.append('name', name);
     formData.append('image', image);
-
     
     try {
+      
+    const token = localStorage.getItem('adminToken');
       const requestOptions = {
         method: 'POST',
         body: formData,
-      
+        headers: {
+          Authorization: `Bearer ${token}`,
+        
+        },
       };
       const response = await fetch('/api/admin/add-category', requestOptions);
 

@@ -3,11 +3,18 @@ import CheckoutPage from "./orders/CheckoutPage";
 function Cart() {
   const [showCheckout, setShowCheckout] = useState(false);
   const [cartItems, setCartItems] = useState([]);
-
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   useEffect(() => {
     fetchCartItems();
+    checkAuthentication();
   }, []);
 
+  const checkAuthentication = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsAuthenticated(true);
+    }
+  };
   const fetchCartItems = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -72,7 +79,16 @@ function Cart() {
   };
 
   return (
+
+
     <div>
+   {!isAuthenticated ? (
+        <div className="alert alert-warning">
+          Please login to view your cart and do checkout.
+        </div>
+      ) : (
+        <>
+
     {showCheckout ? (
       <CheckoutPage amount={calculateTotalValue()} products={cartItems}/>
     ) : (
@@ -110,12 +126,19 @@ function Cart() {
           <button className="btn btn-primary" onClick={() => setShowCheckout(true)}>
           Buy Now
         </button>
-          {/* <button className="btn btn-primary">Buy Now</button> */}
+         
         </div>
       )}
     </div> )}
+    </>
+      )}
+
+
   </div>
-  );
+ 
+ 
+ 
+ );
 }
 
 export default Cart;

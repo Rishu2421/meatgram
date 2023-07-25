@@ -44,13 +44,13 @@
     color: #E90C0C;
     font-size: 20px;
     font-weight: 700;
-}
+ }
 .header .header-wrap .right .first .category a {
     text-decoration: none;
     color: #fff;
     font-size: 16px;
     font-weight: 400;
-}
+} 
 .header .header-wrap .right .first .category a:hover {
     color: #E90C0C;
 }
@@ -130,9 +130,6 @@
     height: 400px;
 }
 
-.category-wrap {
-    padding: 50px 0px;
-}
 .title h2 {
     font-size: 40px;
     text-transform: capitalize;
@@ -153,35 +150,7 @@
     height: 5px;
     width: 100px;
 }
-.category-wrap .image img {
-    max-width: 100%;
-    display: block;
-    margin: 0 auto;
-}
-.category-wrap .text h3 {
-    font-size: 16px;
-    color: #000;
-    font-weight: 500;
-    text-transform: capitalize;
-    text-align: center;
-    margin-top: 15px;
-}
-.category-wrap .text h5 {
-    text-align: center;
-}
-.category-wrap .text h5 a {
-    text-decoration: none;
-    font-size: 16px;
-    color: #000;
-    font-weight: 500;
-}
-.category-wrap .text h5 a i {
-    margin-right: 5px;
-    font-size: 16px;
-}
-.category-wrap .second-row {
-    margin: 30px 0px;
-}
+
 .selling-product .second-row {
     margin: 50px 0px;
 }

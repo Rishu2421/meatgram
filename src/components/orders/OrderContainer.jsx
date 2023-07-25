@@ -4,7 +4,7 @@ import OrderItem from './OrderItem';
 
 const OrderContainer = ({ orders, isAdmin }) => {
   const [isLoading, setLoading] = useState(false);
-
+  console.log(orders);
   const updateOrderStatus = async (orderId, status) => {
     setLoading(true);
     try {

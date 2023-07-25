@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ButtonWrap } from "./inner_components_category/ButtonWrap";
-import Banner from "./inner_components_index/Banner";
 import RedBackgroundWrap from "./inner_components_category/RedBackgroundWrap";
 import { ListImageWrap } from "./inner_components_category/ListImageWrap";
 import { ImageListWrap } from "./inner_components_category/ImageListWrap";
 import ChickenProductComponent from "./inner_components_category/ChickenProductComponent";
 import Items from './product/Items';
-import CategoryWrap from './inner_components_index/CategoryWrap'
+
 
 function Category({ categoryChoice }) {
 

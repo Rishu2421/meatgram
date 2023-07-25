@@ -7,11 +7,12 @@ function Footer() {
         <div className="row footbottom">
           <div className="col-md-4">
             <div className="first">
-              <img src="/images/logo.png" alt="Logo" />
+              <a href="/"> <img src="/images/logo.png" alt="Logo" /> </a>
               <p>
                 Pamper Your Taste Buds With This Rich And Flavourful Chicken
                 Curry Recipe!
               </p>
+             
             </div>
           </div>
           <div className="col-md-4">
@@ -19,19 +20,19 @@ function Footer() {
               <h2>User link</h2>
               <ul>
                 <li>
-                  <a href="#">refer and earn</a>
+                  <a href="#">Location area wise outlet</a>
                 </li>
                 <li>
-                  <a href="#">about us</a>
+                  <a href="#">Privacy Policy</a>
                 </li>
                 <li>
-                  <a href="#">our blog</a>
+                  <a href="#">Terms &amp; conditions</a>
                 </li>
                 <li>
-                  <a href="#">meat gram cash & cash+</a>
+                  <a href="#">FaQs</a>
                 </li>
                 <li>
-                  <a href="#">refer & earn</a>
+                  <a href="#">Customer Support</a>
                 </li>
               </ul>
             </div>
@@ -40,7 +41,7 @@ function Footer() {
             <div className="third">
               <h2>contact us</h2>
               <p>
-                Pamper Your Taste Buds With This Rich And Flavourful Chicken!
+              Shop No R-02 Panchwati Complex, Panchwati Colony, Lalghati, Bhopal
               </p>
               <h2>social icon</h2>
               <ul>

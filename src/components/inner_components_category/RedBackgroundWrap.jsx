@@ -12,15 +12,13 @@ function RedBackgroundWrap() {
       <div className="container">
         <div className="bg-wrap">
           <ul>
-            <li>
+            <li key="home">
               <Link to="/">Home</Link>
             </li>
-            {pathSegments.map((segment, index) => (
-              <><li key={index}>
-                <span></span>
-              </li><li>
-                  <Link to={`/${segment}`}>{segment}</Link>
-                </li></>
+            {pathSegments.map((segment) => (
+              <li key={segment}>
+                <Link to={`/${segment}`}>{segment}</Link>
+              </li>
             ))}
           </ul>
         </div>
@@ -30,31 +28,3 @@ function RedBackgroundWrap() {
 }
 
 export default RedBackgroundWrap;
-
-
-
-// import React from "react";
-
-// function RedBackgroundWrap(){
-//     return (
-//           <section className="red-bg-wrap">
-//             <div className="container">
-//               <div className="bg-wrap">
-//                 <ul>
-//                   <li>
-//                     <a href="/">home</a>
-//                   </li>
-//                   <li>
-//                     <p></p>
-//                   </li>
-//                   <li>
-//                     <a href="/chicken">chiken</a>
-//                   </li>
-//                 </ul>
-//               </div>
-//             </div>
-//           </section>
-//         );
-//       }
-
-// export default RedBackgroundWrap;
