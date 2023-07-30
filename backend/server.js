@@ -1,14 +1,27 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-// Create an instance of Express.js
+
 const app = require('./app');
-const session = require('express-session');
-// const passport = require('passport');
-// const authRoutes = require('./routes/auth');
-// const otpRoutes = require('./routes/otpRoutes');
+
+
 const cors = require('cors');
 
+
+// const DB =
+//   "mongodb+srv://Rishu2421:Rishu2421@cluster0.lm2gsfi.mongodb.net/meatgram?retryWrites=true&w=majority";
+// Connect to MongoDB
+// mongoose
+//   .connect(DB, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => {
+//     console.log(`connection succesfull `);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
 
 
 // Connect to MongoDB
@@ -74,15 +87,15 @@ app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 // });
 // Express session
-app.use(
-    session({
-      secret: 'your-secret-key',
-      resave: false,
-      saveUninitialized: false,
-    })
-  );
-  app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// app.use(
+//     session({
+//       secret: 'your-secret-key',
+//       resave: false,
+//       saveUninitialized: false,
+//     })
+//   );
+//   app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
 
 // Handle CORS
 
@@ -94,7 +107,7 @@ app.use(express.urlencoded({ extended: true }));
   });
   
   // Passport middleware
-  // app.use(passport.initialize());/
+  // app.use(passport.initialize());
   // app.use(passport.session());
   
   // Routes

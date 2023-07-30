@@ -1,0 +1,13 @@
+
+.hidden-select {
+    background-color: black;
+    color: white;
+    border: none; /* Hide the border */
+    outline: none; /* Remove the outline */
+    box-shadow: none; /* Remove any box-shadow */
+    font-size: 16px;
+    font-size: 18px; /* Adjust the font size */
+    font-weight: bold; 
+  
+  }
+  

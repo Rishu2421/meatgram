@@ -1,18 +1,13 @@
 import React,{useState,useEffect} from "react";
-import { Route, Routes,useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import SearchBar from "../Search/SearchBar";
-import { Modal, Button } from "react-bootstrap";
-import Cart from "../Cart";
+import LoginModal from "./LoginModal";
+
 function Navigation() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [otpSent, setOtpSent] = useState(false);
-  const [verifyOtp, setVerifyOtp] = useState(false);
-  const [enteredOtp, setEnteredOtp] = useState("");
-  const [mobileNumber, setMobileNumber] = useState("");
-
+ 
   useEffect(() => {
     // Check for authentication token on component mount
     const token = localStorage.getItem("token");
@@ -25,58 +20,15 @@ function Navigation() {
     setShowLoginModal(true);
   };
 
+  const handleLoginSuccess = () => {
+    setShowLoginModal(false);
+    setIsAuthenticated(true);
+  };
+
   const handleLoginModalClose = () => {
     setShowLoginModal(false);
-    setOtpSent(false);
-    setVerifyOtp(false);
   };
 
-  const handleSendOtp = () => {
-
-    const data = {
-      mobileNumber: mobileNumber,
-    };
-    axios.post("/api/user/signup", data).then((response) => {
-
-        setOtpSent(true);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
-  const handleVerifyOtp = () => {
-    // Perform OTP verification logic here
-    const givenOtp = enteredOtp; // Get the entered OTP from the input field
- 
-    const data = {
-      mobileNumber: mobileNumber,
-      otp: givenOtp,
-    };
-  
-    axios
-      .post("/api/user/signup/verify", data)
-      .then((response) => {
-        console.log(response.status);
-        console.log(response)
-        if (response.status === 200) {
-          const token = response.data.token; // Extract the JWT token from the response
-          const userId = response.data.userId; 
-         
-          setIsAuthenticated(true);
-          localStorage.setItem("token", token); // Store the token in localStorage
-          localStorage.setItem("userId", userId);
-         
-          handleLoginModalClose();
-        }
-        // Perform necessary actions based on the verification result
-        // For example, redirect to a logged-in page or show an error message
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    setVerifyOtp(true);
-  };
 
 
   const handleLogout = () => {
@@ -150,61 +102,12 @@ function Navigation() {
             </div>
       }
       
+      <LoginModal
+        showLoginModal={showLoginModal}
+        handleLoginModalClose={handleLoginModalClose}
+        handleLoginSuccess={handleLoginSuccess}
+      />
       
-      <Modal
-          show={showLoginModal}
-          onHide={handleLoginModalClose}
-          backdrop="static"
-          keyboard={false}
-          centered
-        >
-          <Modal.Header closeButton>
-            <Modal.Title className="text-center">
-              {verifyOtp ? "Verify OTP" : "LogIn Now"}
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            {otpSent && !verifyOtp ? (
-              <div>
-                <p>Enter the OTP sent to {mobileNumber}</p>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter OTP"
-                    value={enteredOtp}
-                    onChange={(e) => setEnteredOtp(e.target.value)}
-                  />
-                </div>
-                <Button variant="primary" className="btn me-2" onClick={handleVerifyOtp}>
-                  Verify OTP
-                </Button>
-              </div>
-            ) : (
-              <div>
-                <form>
-                  <h5>Enter Mobile Number</h5>
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Enter your mobile number"
-                      value={mobileNumber}
-                      onChange={(e) => setMobileNumber(e.target.value)}
-                    />
-                  </div>
-                  <Button
-                    variant="primary"
-                    className="btn me-4"
-                    onClick={handleSendOtp}
-                  >
-                    Send OTP
-                  </Button>
-                </form>
-              </div>
-            )}
-          </Modal.Body>
-        </Modal>
     </div>
     
   );

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, Route, Routes } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import AdminPanel from '../AdminPanel/AdminPanel';
 import AdminLogin from '../AdminPanel/AdminLogin';
 
