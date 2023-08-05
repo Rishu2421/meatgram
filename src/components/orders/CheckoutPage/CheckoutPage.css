@@ -1,0 +1,25 @@
+/* Add this CSS to your CSS file or component's styles */
+.payment-method-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .payment-method-box input[type='radio'] {
+    display: none;
+  }
+  
+  .payment-method-box label {
+    cursor: pointer;
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+  }
+  
+  .payment-method-box input[type='radio']:checked + label {
+    background-color: #2196f3;
+    color: #fff;
+    border-color: #2196f3;
+  }
+  

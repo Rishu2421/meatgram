@@ -1,0 +1,14 @@
+.suggestions {
+    position: absolute;
+    background-color: #a58686; /* Replace with desired background color */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: block; /* Hide the dropdown by default */
+  }
+  
+  .suggestions li {
+    padding: 8px;
+    cursor: pointer;
+  }
+  

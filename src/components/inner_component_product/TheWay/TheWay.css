@@ -1,0 +1,35 @@
+
+.Theway {
+    background-color: #f1f1f1;
+    padding: 50px 30px;
+}
+.Theway .title {
+    text-align: center;
+    position: relative;
+}
+
+.Theway .title h3 b {
+    color: #E90C0C;
+}
+.Theway .title h3 {
+    font-size: 24px;
+    color: #000;
+    position: relative;
+    font-weight: 700;
+    margin-bottom: 50px;
+}
+.Theway .image img {
+    max-width: 100%;
+}
+.Theway .text {
+    padding-top: 50px;
+}
+.Theway .text p {
+    font-size: 16px;
+    color: #000;
+    font-weight: 700;
+    text-align: center;
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+}

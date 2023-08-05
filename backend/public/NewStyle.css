@@ -1,0 +1,22 @@
+/* Banner.css */
+
+.carousel .slide img {
+    max-height: 400px; /* Adjust the height as needed */
+    object-fit: cover;
+  }
+  
+  .carousel .carousel-indicator {
+    background-color: #bbb;
+    border: none;
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .carousel .carousel-indicator.selected {
+    background-color: #333;
+  }
+  
